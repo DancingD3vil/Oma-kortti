@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import {Link} from "react-router-dom";
+import { BrowserRouter, Link, Route, Router, Routes } from "react-router-dom";
 import contacts from './contacts.json';
+import Home from "./Home";
+
 
 export default function App() {
   return (
+
     <SafeAreaProvider>
       <View style={styles.container}>
         <View style={styles.title}>
@@ -13,9 +16,6 @@ export default function App() {
         </View>
         <View style={styles.main}>
           <Text>{JSON.stringify(contacts)}</Text>
-        </View>
-        <View style={styles.main}>
-          <Link to="/Home"> Home </Link>
         </View>
         <StatusBar style="auto" />
       </View>

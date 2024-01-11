@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {Link} from "react-router-dom";
 import contacts from './contacts.json';
 
 export default function App() {
@@ -8,10 +9,13 @@ export default function App() {
     <SafeAreaProvider>
       <View style={styles.container}>
         <View style={styles.title}>
-          <Text>ButtButt</Text>
+          <Text>AssAss</Text>
         </View>
         <View style={styles.main}>
           <Text>{JSON.stringify(contacts)}</Text>
+        </View>
+        <View style={styles.main}>
+          <Link to="/Home"> Home </Link>
         </View>
         <StatusBar style="auto" />
       </View>

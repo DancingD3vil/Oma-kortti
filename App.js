@@ -1,42 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { BrowserRouter, Link, Route, Router, Routes } from "react-router-dom";
-import contacts from './contacts.json';
-import Home from "./Home";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Home from './Home.js'
+import Contacts from './Contacts.js' 
 
 
-export default function App() {
+
+function HomeScreen() {
   return (
-
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <View style={styles.title}>
-          <Text>AssAss</Text>
-        </View>
-        <View style={styles.main}>
-          <Text>{JSON.stringify(contacts)}</Text>
-        </View>
-        <StatusBar style="auto" />
-      </View>
-    </SafeAreaProvider>
+    <Home/>
   );
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flex: 0.8,
-    backgroundColor: '#fff',
-  },
-  title: {
-    flex: 0.2,
-    backgroundColor: '#fff',
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#bbb',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function ContactsScreen() {
+  return (
+    <Contacts/>
+  );
+}
+
+const Tab = createMaterialTopTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Contacts" component={ContactsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}

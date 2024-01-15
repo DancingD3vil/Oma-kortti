@@ -4,6 +4,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function Home() {
   return (
-    <View>cbt</View>
+    <View><Text>ababa</Text></View>
   );
 }

@@ -1,19 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import contacts from './contacts.json';
 import Contactlist from './components/Contactlist.js';
 
-export default function Contacts() {
+export default function Contacts({contacts}) {
     return (
     <View style={styles.container}>
         <View style={styles.titleContainer}>
             <View style={styles.title}>
-                <Text>Title</Text>
-            </View>
-        </View>
-        <View style={styles.navContainer}>
-            <View style={styles.nav}>
-                <Text>Navi</Text>
+                <Text>{}</Text>
             </View>
         </View>
         <View style={styles.mainContainer}>
@@ -27,7 +21,7 @@ export default function Contacts() {
 const styles = StyleSheet.create({
   mainContainer: {
     width: '100%',
-    height: '80%',
+    height: '90%',
     backgroundColor: '#bbb',
     alignItems: 'center',
   },

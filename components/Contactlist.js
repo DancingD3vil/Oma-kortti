@@ -2,26 +2,19 @@ import { StyleSheet, Text, View } from 'react-native';
 import Contact from './Contact.js'
 
 export default function Contactlist( {contactlist} ) {
-    len = contactlist.length;
-    a = (
-        <View style={styles.container}>
-            {/*for(i = 0;i< len; i++)
-                aaa(contact[i]);
-    */}
-            {aaa(contactlist[0])}
-        </View>
-    )
-    return a
+    return <View style={styles.container}>
+              {contactlist.map(contact => addIntoList(contact))}
+          </View>
   }
 
-  function aaa(contact){
-    alert('abc')
-    return <Contact contact={contact}/>
+function addIntoList(contact){
+ // if(contact['firstName'].includes(search) || contact['lastName'].includes(search) || contact['unit'].includes(search))
+      return <Contact contact={contact}/>
   }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#bbb',
+        backgroundColor: '#bbc',
         width: '100%',
         height: '100%',
         alignItems: 'center',

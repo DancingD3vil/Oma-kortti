@@ -23,8 +23,6 @@ function ContactsScreen() {
 const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
-  alert(savedContacts);
-  alert(contacts);
   return (
     <NavigationContainer>
       <Tab.Navigator>

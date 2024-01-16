@@ -1,21 +1,28 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import savedContacts from '../savedContacts.json';
 
 
 export default function Contact( {contact} ) {
-    if(contact['starred'])
+    if(savedContacts['savedContacts'].includes(contact['id']))
         starred = 'jup';
     else
-        starred = 'nop';
+        starred = 'noup';
     return (
     <View style={styles.container}>
-        <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone'] + ' ' + starred}</Text>
+        <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact)}><Text>{starred}</Text></Pressable>
     </View>
     );
   }
 
   function save(contact){
-    alert('a');
+    alert(savedContacts.savedContacts);
+    if(savedContacts['savedContacts'].includes(contact.id)){
+      savedContacts.savedContacts = savedContacts.savedContacts.filter((id) => id != contact.id);
+    }
+    else{
+      savedContacts.savedContacts.push(contact.id);
+    }
+    alert(savedContacts.savedContacts);
   }
 
   const styles = StyleSheet.create({

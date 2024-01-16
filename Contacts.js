@@ -1,22 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Contactlist from './components/Contactlist.js';
+import savedcontacts from './savedContacts.json';
 
 export default function Contacts({contacts}) {
+    text = '';
     return (
-    <View style={styles.container}>
-        <View style={styles.titleContainer}>
-            <View style={styles.title}>
-                <Text>{}</Text>
-            </View>
-        </View>
-        <View style={styles.mainContainer}>
-            <Contactlist contactlist={contacts['contacts']} />
-        </View>
-        <StatusBar style="auto" />
-    </View>
+      <View style={styles.container}>
+          <View style={styles.titleContainer}>
+              <View style={styles.title}>
+                  <TextInput value={text} onChangeText={onChangeText}></TextInput>
+              </View>
+          </View>
+          <View style={styles.mainContainer}>
+              <Contactlist contactlist={contacts['contacts']} search={text}/>
+          </View>
+          <StatusBar style="auto" />
+      </View>
     );
-  }
+}
+
+function onChangeText() {
+  
+}
 
 const styles = StyleSheet.create({
   mainContainer: {

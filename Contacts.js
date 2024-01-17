@@ -4,16 +4,15 @@ import Contactlist from './components/Contactlist.js';
 import savedcontacts from './savedContacts.json';
 
 export default function Contacts({contacts}) {
-    text = '';
     return (
       <View style={styles.container}>
           <View style={styles.titleContainer}>
               <View style={styles.title}>
-                  <TextInput value={text} onChangeText={onChangeText}></TextInput>
+                  <TextInput value={'search'} onChangeText={onChangeText}></TextInput>
               </View>
           </View>
           <View style={styles.mainContainer}>
-              <Contactlist contactlist={contacts['contacts']} search={text}/>
+              <Contactlist contactlist={contacts.contacts} search={''}/>
           </View>
           <StatusBar style="auto" />
       </View>

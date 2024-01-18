@@ -1,16 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import Contact from './Contact.js'
-import savedcontacts from '../savedContacts.json';
 
-export default function Contactlist( {contactlist, search} ) {
+export default function Contactlist( {contactInfo, search} ) {
     return <View style={styles.container}>
-              {contactlist.map(contact => addIntoList(contact, search))}
+              {contactInfo.contacts.contacts.map(contact => addIntoList(contact, search, contactInfo))}
           </View>
   }
 
-function addIntoList(contact, search){
+function addIntoList(contact, search, contactInfo){
  //if(contact['firstName'].includes(search) || contact['lastName'].includes(search) || contact['unit'].includes(search))
-      return <Contact contact={contact}/>
+      return <Contact contact={contact} contactInfo={contactInfo}/>
   }
 
 const styles = StyleSheet.create({

@@ -1,28 +1,27 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-import savedContacts from '../savedContacts.json';
+import { StyleSheet, Text, View, Pressable, useEffect } from 'react-native';
 
 
-export default function Contact( {contact} ) {
-    if(savedContacts['savedContacts'].includes(contact['id']))
+export default function Contact( {contact, contactInfo} ) {
+    if(contactInfo.starredContacts.starredContacts.includes(contact['id']))
         starred = 'jup';
     else
         starred = 'noup';
     return (
     <View style={styles.container}>
-        <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact)}><Text>{starred}</Text></Pressable>
+        <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact, contactInfo)}><Text>{starred}</Text></Pressable>
     </View>
     );
   }
 
-  function save(contact){
-    alert(savedContacts.savedContacts);
-    if(savedContacts['savedContacts'].includes(contact.id)){
-      savedContacts.savedContacts = savedContacts.savedContacts.filter((id) => id != contact.id);
+  function save(contact, contactInfo){
+    alert(starredContacts.starredContacts);
+    if(starredContacts['starredContacts'].includes(contact.id)){
+      starredContacts.starredContacts = starredContacts.starredContacts.filter((id) => id != contact.id);
     }
     else{
-      savedContacts.savedContacts.push(contact.id);
+      starredContacts.starredContacts.push(contact.id);
     }
-    alert(savedContacts.savedContacts);
+    alert(starredContacts.starredContacts);
   }
 
   const styles = StyleSheet.create({

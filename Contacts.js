@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Contactlist from './components/Contactlist.js';
-import savedcontacts from './savedContacts.json';
 
-export default function Contacts({contacts}) {
+export default function Contacts({contactInfo}) {
     return (
       <View style={styles.container}>
           <View style={styles.titleContainer}>
@@ -12,7 +11,7 @@ export default function Contacts({contacts}) {
               </View>
           </View>
           <View style={styles.mainContainer}>
-              <Contactlist contactlist={contacts.contacts} search={''}/>
+              <Contactlist contactInfo={contactInfo} search={''}/>
           </View>
           <StatusBar style="auto" />
       </View>

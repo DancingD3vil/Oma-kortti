@@ -1,4 +1,8 @@
 {"contacts":[
-    { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  },
-    { "id": 2, "firstName":"Dohn", "lastName":"Joe", "unit":"Taitamo", "email":"dohnjoe@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  }
+    { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
+    { "id": 2, "firstName":"Dohn", "lastName":"Joe", "unit":"Taitamo", "email":"dohnjoe@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
+    { "id": 3, "firstName":"Bohn", "lastName":"John", "unit":"Taitamo", "email":"fuq@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  },
+    { "id": 4, "firstName":"Rohn", "lastName":"Roe", "unit":"Taitamo", "email":"duq@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
+    { "id": 5, "firstName":"Duedoedae", "lastName":"Diybiy", "unit":"Taitamo", "email":"suq@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
+    { "id": 5, "firstName":"Pasi", "lastName":"Sipa", "unit":"Taitamo", "email":"pasipa@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  }
   ]}

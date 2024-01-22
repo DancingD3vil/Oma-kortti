@@ -1,25 +1,23 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Contactlist from './components/Contactlist.js';
 
 export default function Contacts({contactInfo}) {
+    const [search, onChangeText] = React.useState('');
     return (
       <View style={styles.container}>
           <View style={styles.titleContainer}>
               <View style={styles.title}>
-                  <TextInput value={'search'} onChangeText={onChangeText}></TextInput>
+                  <TextInput value={search} onChangeText={onChangeText} placeholder='search'></TextInput>
               </View>
           </View>
           <View style={styles.mainContainer}>
-              <Contactlist contactInfo={contactInfo} search={''}/>
+              <Contactlist contactInfo={contactInfo} search={search}/>
           </View>
           <StatusBar style="auto" />
       </View>
     );
-}
-
-function onChangeText() {
-  
 }
 
 const styles = StyleSheet.create({
@@ -32,7 +30,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     backgroundColor: '#bbb',
     width: '100%',
-    height: '10%',
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },

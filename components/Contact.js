@@ -1,34 +1,41 @@
 import { StyleSheet, Text, View, Pressable, useEffect } from 'react-native';
+import { useState } from 'react';
+
 
 
 export default function Contact( {contact, contactInfo} ) {
-    if(contactInfo.starredContacts.starredContacts.includes(contact['id']))
-        starred = 'jup';
-    else
-        starred = 'noup';
-    return (
-    <View style={styles.container}>
-        <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact, contactInfo)}><Text>{starred}</Text></Pressable>
-    </View>
-    );
-  }
-
+  const [isStarred, setIsStarred] = useState(contactInfo.starredContacts.starredContacts.includes(contact['id']));
   function save(contact, contactInfo){
-    alert(starredContacts.starredContacts);
-    if(starredContacts['starredContacts'].includes(contact.id)){
+    starredContacts = contactInfo.starredContacts;
+    if(starredContacts.starredContacts.includes(contact.id)){
+      setIsStarred(false);
       starredContacts.starredContacts = starredContacts.starredContacts.filter((id) => id != contact.id);
+      contactInfo.setStarredContacts(starredContacts);
+      contactInfo.saveStarredContacts();
     }
     else{
+      setIsStarred(true);
       starredContacts.starredContacts.push(contact.id);
+      contactInfo.setStarredContacts(starredContacts);
+      contactInfo.saveStarredContacts();
     }
-    alert(starredContacts.starredContacts);
   }
+  if(isStarred)
+      starred = 'jup';
+  else
+      starred = 'noup';
+  return (
+  <View style={styles.container}>
+      <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact, contactInfo)}><Text>{starred}</Text></Pressable>
+  </View>
+  );
+}
 
   const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        width: '90%',
-        height: '10%',
+        width: '100%',
+        height: 50,
         justifyContent: 'center',
     },
   });

@@ -5,7 +5,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Contacts from './Contacts.js';
 import Home from './Home.js';
 import contacts from './contacts.json';
-import { json } from 'react-router-dom';
 
 
 
@@ -27,9 +26,6 @@ const contactInfo = {
   contacts: contacts,
   setStarredContacts: function (newData){
     this.starredContacts = newData;
-  },
-  getStarredContacts: function (){
-    return this.starredContacts;
   },
   loadStarredContacts: async function (){
     try {
@@ -53,9 +49,9 @@ const contactInfo = {
   }
 }
 
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
+//function delay(time) {
+//  return new Promise(resolve => setTimeout(resolve, time));
+//}
 
 export default function App() {
   useEffect(() => {

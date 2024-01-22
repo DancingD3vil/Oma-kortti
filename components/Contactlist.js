@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Contact from './Contact.js'
 
 export default function Contactlist( {contactInfo, search} ) {
     return <View style={styles.container}>
-              {contactInfo.contacts.contacts.map(contact => addIntoList(contact, search, contactInfo))}
+              <ScrollView>
+                {contactInfo.contacts.contacts.map(contact => addIntoList(contact, search, contactInfo))}
+              </ScrollView>
           </View>
   }
 
 function addIntoList(contact, search, contactInfo){
- //if(contact['firstName'].includes(search) || contact['lastName'].includes(search) || contact['unit'].includes(search))
+ if(contact['firstName'].toLowerCase().includes(search.toLowerCase()) || contact['lastName'].toLowerCase().includes(search.toLowerCase()) || contact['unit'].toLowerCase().includes(search.toLowerCase()))
       return <Contact contact={contact} contactInfo={contactInfo}/>
   }
 

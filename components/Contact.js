@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Pressable, useEffect } from 'react-native';
 import { useState } from 'react';
-
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Avatar } from 'react-native-elements';
 
 
 export default function Contact( {contact, contactInfo} ) {
@@ -21,21 +22,26 @@ export default function Contact( {contact, contactInfo} ) {
     }
   }
   if(isStarred)
-      starred = 'jup';
+      starred = <View style={styles.star}><MaterialCommunityIcons name="star-face" size={36} color="gold" /></View>;
   else
-      starred = 'noup';
+      starred = <View style={styles.star}><MaterialCommunityIcons name="star-outline" size={36} color="gold" /></View>;
   return (
   <View style={styles.container}>
-      <Text>{contact['firstName'] + ' ' + contact['lastName'] + ' ' + contact['unit'] + ' ' + contact['email'] + ' ' + contact['phone']}</Text><Pressable onPress={() => save(contact, contactInfo)}><Text>{starred}</Text></Pressable>
+      <Avatar rounded icon={{name: 'user', type: 'font-awesome'}} activeOpacity={0.7} containerStyle={{flex: 2, marginLeft: 20, marginTop: 115}}/><Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable><Text>{contact['firstName'] + ' ' + contact['lastName']}</Text><Text>{contact['unit']}</Text><Text>{contact['email']}</Text><Text>{contact['phone']}</Text>
   </View>
   );
 }
 
   const styles = StyleSheet.create({
     container: {
+        boxsizing: 'border-box',
         backgroundColor: '#fff',
         width: '100%',
-        height: 50,
+        height: 'auto',
         justifyContent: 'center',
+        display: 'grid',
     },
+    star: {
+      
+    }
   });

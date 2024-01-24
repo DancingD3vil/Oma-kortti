@@ -1,4 +1,4 @@
 {"contacts":[
-    { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  },
+    { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
     { "id": 2, "firstName":"Dohn", "lastName":"Joe", "unit":"Taitamo", "email":"dohnjoe@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  }
   ]}

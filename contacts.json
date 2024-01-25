@@ -1,4 +1,18 @@
 {"contacts":[
-    { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":true, "avatar":"image.com"  },
-    { "id": 2, "firstName":"Dohn", "lastName":"Joe", "unit":"Taitamo", "email":"dohnjoe@mail.com", "phone":"123321123","starred":false, "avatar":"image.com"  }
-  ]}
+  { "id": 1, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 2, "firstName":"Dohn", "lastName":"Joe", "unit":"Taitamo", "email":"dohnjoe@mail.com", "phone":"123321123","starred":true, "avatar":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ_6dtXJaJB-DLBd8iD-0hr3GvWyrRK7_u7w&usqp=CAU"  },
+  { "id": 3, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":null  },
+  { "id": 4, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 5, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 6, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 7, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 8, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 9, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 10, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 11, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 12, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 13, "firstName":"John", "lastName":"Doe", "unit":"Luotsi", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 14, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 15, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  },
+  { "id": 16, "firstName":"John", "lastName":"Doe", "unit":"Taitamo", "email":"johndoe@mail.com", "phone":"123321123","starred":false, "avatar":"https://styles.redditmedia.com/t5_346cl/styles/communityIcon_09sormoxbtu31.png"  }
+]}

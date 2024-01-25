@@ -11,7 +11,7 @@ export default function Contactlist( {contactInfo, search} ) {
 
 function addIntoList(contact, search, contactInfo){
  if(contact['firstName'].toLowerCase().includes(search.toLowerCase()) || contact['lastName'].toLowerCase().includes(search.toLowerCase()) || contact['unit'].toLowerCase().includes(search.toLowerCase()))
-      return <Contact style={styles.contact}contact={contact} contactInfo={contactInfo}/>
+      return <Contact key={contact.id} style={styles.contact}contact={contact} contactInfo={contactInfo}/>
   }
 
 const styles = StyleSheet.create({

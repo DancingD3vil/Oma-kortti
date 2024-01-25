@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Pressable, useEffect } from 'react-native';
 import { useState } from 'react';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Avatar } from 'react-native-elements';
+import UserAvatar from 'react-native-user-avatar';
 
 
 export default function Contact( {contact, contactInfo} ) {
@@ -22,26 +22,40 @@ export default function Contact( {contact, contactInfo} ) {
     }
   }
   if(isStarred)
-      starred = <View style={styles.star}><MaterialCommunityIcons name="star-face" size={36} color="gold" /></View>;
+      starred = <MaterialCommunityIcons style={styles.star} name="star-face" size={36} color="gold" />;
   else
-      starred = <View style={styles.star}><MaterialCommunityIcons name="star-outline" size={36} color="gold" /></View>;
+      starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="gold" />;
   return (
   <View style={styles.container}>
-      <Avatar rounded icon={{name: 'user', type: 'font-awesome'}} activeOpacity={0.7} containerStyle={{flex: 2, marginLeft: 20, marginTop: 115}}/><Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable><Text>{contact['firstName'] + ' ' + contact['lastName']}</Text><Text>{contact['unit']}</Text><Text>{contact['email']}</Text><Text>{contact['phone']}</Text>
+      <UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /><View style={styles.info}><Text>{contact['firstName'] + ' ' + contact['lastName']}</Text><Text>{contact['unit']}</Text><Text>{contact['email']}</Text><Text>{contact['phone']}</Text></View><View style={styles.starcontainer}><Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable></View>
   </View>
   );
 }
 
   const styles = StyleSheet.create({
     container: {
-        boxsizing: 'border-box',
+        flexDirection: 'row',
+        boxSizing: 'border-box',
         backgroundColor: '#fff',
         width: '100%',
         height: 'auto',
-        justifyContent: 'center',
-        display: 'grid',
+        borderBottomWidth: 5,
+        borderColor: '#bbc'
+    },
+    starcontainer: {
+      flexDirection: 'column',
+      flex: 1,
     },
     star: {
-      
+      alignSelf: 'flex-end'
+    },
+    avatar: {
+      height: 64,
+      width: 64,
+      alignSelf: 'center',
+    },
+    info: {
+      flexDirection: 'column',
+      paddingLeft: 10,
     }
   });

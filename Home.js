@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View, } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import contacts from './contacts.json';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Avatar } from 'react-native-elements';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import UserAvatar from 'react-native-user-avatar';
+
 
 
 export default function Home() {
@@ -15,35 +14,36 @@ export default function Home() {
     }
     else {
       contactArray.push(
-        <View style={styles.membrane}>
-          <Avatar rounded icon={{name: 'user', type: 'font-awesome'}} activeOpacity={0.7} />
-          <Text style={styles.mlegg}>{contacts.contacts[i].firstName} {contacts.contacts[i].lastName}</Text>
-          <Text style={styles.mlegg}>{contacts.contacts[i].unit}</Text>
-          <MaterialCommunityIcons name="star-outline" size={36} color="gold" />
+        <View style={styles.cardBox}>
+          <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[i].firstName + ' ' + contacts.contacts[i].lastName} />
+          <Text style={styles.text}>{contacts.contacts[i].firstName} {contacts.contacts[i].lastName}</Text>
+          <Text style={styles.text}>{contacts.contacts[i].unit}</Text>
+          <MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" />
         </View>
       )
     }
   }
-  return <SafeAreaView style={styles.chicken}><ScrollView style={styles.egg}>{contactArray}</ScrollView></SafeAreaView>
+  return <SafeAreaView style={styles.container}><ScrollView style={styles.scroll}>{contactArray}</ScrollView></SafeAreaView>
 }
 const styles = StyleSheet.create({
-  chicken: {
+  container: {
     justifyContent: 'space-evenly',
+    backgroundColor:"white",
   },
-  egg: {
-    
-  },
-  membrane:{
+  scroll: {},
+  cardBox:{
     justifyContent: 'space-evenly',
-    borderWidth: 1,
     flex: 1,
     flexDirection: 'row',
-    paddingVertical: 50,
-    borderColor: '#000000',
-    alignItems: 'center'
-    
+    borderWidth: 1,
+    paddingVertical: 30,
+    marginBottom: 2,
+    marginTop: 4,
+    borderColor: '#C0C0C0',
+    alignItems: 'center',
+    backgroundColor: "lightgray",
   },
   avatar: {},
-  mlegg: {fontSize: 20},
-  icon: {fontSize: 50}
+  text: {fontSize: 20},
+  icon: {fontSize: 50, borderColor: "black", borderWidth:1}
 });

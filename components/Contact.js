@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Pressable, useEffect } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
-import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 
 
-export default function Contact( {contact, contactInfo} ) {
+export default function Contact( {contact, contactInfo, navigation} ) {
   const [isStarred, setIsStarred] = useState(contactInfo.starredContacts.starredContacts.includes(contact['id']));
   function save(contact, contactInfo){
     starredContacts = contactInfo.starredContacts;
@@ -27,7 +27,16 @@ export default function Contact( {contact, contactInfo} ) {
       starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="gold" />;
   return (
   <View style={styles.container}>
-      <UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /><View style={styles.info}><Text>{contact['firstName'] + ' ' + contact['lastName']}</Text><Text>{contact['unit']}</Text><Text>{contact['email']}</Text><Text>{contact['phone']}</Text></View><View style={styles.starcontainer}><Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable></View>
+      <Pressable onPress={()=>{contactInfo.zoomedContact.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
+      <View style={styles.info}>
+        <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
+        <Text>{contact['unit']}</Text>
+        <Text>{contact['email']}</Text>
+        <Text>{contact['phone']}</Text>
+      </View>
+      <View style={styles.starcontainer}>
+        <Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable>
+      </View>
   </View>
   );
 }

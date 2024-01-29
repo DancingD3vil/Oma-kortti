@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import UserAvatar from 'react-native-user-avatar';
 
 export default function Zoom({contactInfo}){
-    contact = contactInfo.contacts.find((contact) => contact.id == contactInfo.zoomedContact.contactId);
+    contact = contactInfo.contacts.find((contact) => contact.id == contactInfo.zoomedContact);
     return <View style={StyleSheet.container}>
                 <UserAvatar size={256} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} />
                 <Text style={styles.name}>{contact.firstName + ' ' + contact.lastName}</Text>

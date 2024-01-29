@@ -27,7 +27,7 @@ export default function Contact( {contact, contactInfo, navigation} ) {
       starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="gold" />;
   return (
   <View style={styles.container}>
-      <Pressable onPress={()=>{contactInfo.zoomedContact.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
+      <Pressable onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
       <View style={styles.info}>
         <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
         <Text>{contact['unit']}</Text>

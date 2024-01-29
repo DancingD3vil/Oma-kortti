@@ -37,11 +37,9 @@ zoomedContact = {
 const contactInfo = {
   starredContacts: {"starredContacts": []},
   contacts: contacts.contacts,
-  zoomedContact: {
-    contactId: 0,
-    setZoomedContact: function (newId) {
-      this.contactId = newId;
-    }
+  zoomedContact: 0,
+  setZoomedContact: function (newId) {
+      this.zoomedContact = newId;
   },
   setStarredContacts: function (newData){
     this.starredContacts = newData;

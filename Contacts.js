@@ -24,11 +24,9 @@ const styles = StyleSheet.create({
   mainContainer: {
     width: '100%',
     height: '90%',
-    backgroundColor: '#bbb',
     alignItems: 'center',
   },
   searchContainer: {
-    backgroundColor: '#bbb',
     width: '100%',
     height: 50,
     alignItems: 'center',
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#bbb',
+    backgroundColor: '#d8e9fa',
     alignItems: 'center',
     justifyContent: 'center',
   },

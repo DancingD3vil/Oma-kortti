@@ -22,12 +22,12 @@ export default function Contact( {contact, contactInfo, navigation} ) {
     }
   }
   if(isStarred)
-      starred = <MaterialCommunityIcons style={styles.star} name="star-face" size={36} color="gold" />;
+      starred = <MaterialCommunityIcons style={styles.star} name="star-face" size={36} color="#f5e030" />;
   else
-      starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="gold" />;
+      starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="#a6a6a6" />;
   return (
   <View style={styles.container}>
-      <Pressable onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
+      <Pressable style={styles.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
       <View style={styles.info}>
         <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
         <Text>{contact['unit']}</Text>
@@ -45,15 +45,17 @@ export default function Contact( {contact, contactInfo, navigation} ) {
     container: {
         flexDirection: 'row',
         boxSizing: 'border-box',
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff73',
         width: '100%',
         height: 'auto',
         borderBottomWidth: 5,
-        borderColor: '#bbc'
+        borderColor: '#d8e9fa',
+        borderRadius: 35,
     },
     starcontainer: {
       flexDirection: 'column',
       flex: 1,
+      alignSelf: 'center'
     },
     star: {
       alignSelf: 'flex-end'
@@ -66,5 +68,6 @@ export default function Contact( {contact, contactInfo, navigation} ) {
     info: {
       flexDirection: 'column',
       paddingLeft: 10,
+      opacity: 45
     }
   });

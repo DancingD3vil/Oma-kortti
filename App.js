@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -28,12 +29,6 @@ function ZoomScreen() {
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
-zoomedContact = {
-  contactId: 0,
-  setZoomedContact: function (newId) {
-    this.contactId = newId;
-  }
-}
 const contactInfo = {
   starredContacts: {"starredContacts": []},
   contacts: contacts.contacts,
@@ -66,33 +61,44 @@ const contactInfo = {
   }
 }
 
-//function delay(time) {
-//  return new Promise(resolve => setTimeout(resolve, time));
-//}
-
 export default function App() {
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const FirstLoad = async () => {
-      contactInfo.loadStarredContacts();
+      setLoading(true);
+      await contactInfo.loadStarredContacts();
+      setLoading(false)
     }
     FirstLoad();
   }, []);
-  //alert(JSON.stringify(contactInfo.starredContacts));
-  //delay(10000).then(() => {alert(JSON.stringify(contactInfo.starredContacts))});
-  
-  return (
-    <NavigationContainer>
-      <Stack.Navigator  initialRouteName="Screen">
-        <Stack.Screen options={{headerShown: false}} name="Screen" component={AScreen} />
-        <Stack.Screen name="Zoom" component={ZoomScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+  if(!loading) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator  initialRouteName="Screen">
+          <Stack.Screen options={{headerShown: false}} name="Screen" component={AScreen} />
+          <Stack.Screen name="Zoom" component={ZoomScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+  return <View style={[styles.container, styles.horizontal]}><ActivityIndicator size={100}/></View>;
 }
 
 function AScreen({navigation}) {
-  return <Tab.Navigator>
+  return <Tab.Navigator initialRouteName='Contacts'>
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Contacts" component={ContactsScreen} navigation={navigation}/>
         </Tab.Navigator>
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+});

@@ -85,7 +85,7 @@ export default function App() {
 }
 
 function AScreen({navigation}) {
-  return <Tab.Navigator initialRouteName='Contacts'>
+  return <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Contacts" component={ContactsScreen} navigation={navigation}/>
         </Tab.Navigator>

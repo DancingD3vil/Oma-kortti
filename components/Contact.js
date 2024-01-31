@@ -26,17 +26,20 @@ export default function Contact( {contact, contactInfo, navigation} ) {
   else
       starred = <MaterialCommunityIcons style={styles.star} name="star-outline" size={36} color="#a6a6a6" />;
   return (
-  <View style={styles.container}>
-      <Pressable style={styles.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
-      <View style={styles.info}>
-        <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
-        <Text>{contact['unit']}</Text>
-        <Text>{contact['email']}</Text>
-        <Text>{contact['phone']}</Text>
-      </View>
-      <View style={styles.starcontainer}>
-        <Pressable onPress={() => save(contact, contactInfo)}>{starred}</Pressable>
-      </View>
+  <View>
+    <View style={styles.container}>
+        <Pressable style={styles.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={64} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
+        <View style={styles.info}>
+          <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
+          <Text>{contact['unit']}</Text>
+          <Text>{contact['email']}</Text>
+          <Text>{contact['phone']}</Text>
+        </View>
+        <View style={styles.starcontainer}>
+          <Pressable style={styles.star} onPress={() => save(contact, contactInfo)}>{starred}</Pressable>
+        </View>
+    </View>
+    <View style={styles.separator}/>
   </View>
   );
 }
@@ -48,8 +51,6 @@ export default function Contact( {contact, contactInfo, navigation} ) {
         backgroundColor: '#ffffff73',
         width: '100%',
         height: 'auto',
-        borderBottomWidth: 5,
-        borderColor: '#d8e9fa',
         borderRadius: 35,
     },
     starcontainer: {
@@ -69,5 +70,9 @@ export default function Contact( {contact, contactInfo, navigation} ) {
       flexDirection: 'column',
       paddingLeft: 10,
       opacity: 45
+    },
+    separator: {
+      height: 5,
+      backgroundColor: '#00000000'
     }
   });

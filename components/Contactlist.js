@@ -1,17 +1,17 @@
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Contact from './Contact.js';
 
-export default function Contactlist( {contactInfo, search, navigation} ) {
+export default function Contactlist( {contactInfo, search, navigation, unit} ) {
     return <View style={styles.container}>
               <ScrollView style={styles.scrollview}>
-                {contactInfo.contacts.map(contact => addIntoList(contact, search, contactInfo, navigation))}
+                {contactInfo.contacts.map(contact => addIntoList(contact, search, unit, contactInfo, navigation))}
               </ScrollView>
           </View>
   }
 
-function addIntoList(contact, search, contactInfo, navigation){
- if(contact['firstName'].toLowerCase().includes(search.toLowerCase()) || contact['lastName'].toLowerCase().includes(search.toLowerCase()) || contact['unit'].toLowerCase().includes(search.toLowerCase()))
-      return <Contact key={contact.id} style={styles.contact}contact={contact} contactInfo={contactInfo} navigation={navigation}/>
+function addIntoList(contact, search, unit, contactInfo, navigation){
+ if((contact['firstName'].toLowerCase().includes(search.toLowerCase()) || contact['lastName'].toLowerCase().includes(search.toLowerCase()))&&(unit == null || contact.unit == unit))
+      return <Contact key={contact.id} style={styles.contact} contact={contact} contactInfo={contactInfo} navigation={navigation}/>
   }
 
 const styles = StyleSheet.create({

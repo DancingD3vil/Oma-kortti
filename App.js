@@ -33,11 +33,20 @@ const contactInfo = {
   starredContacts: {"starredContacts": []},
   contacts: contacts.contacts,
   zoomedContact: 0,
+  units: [],
   setZoomedContact: function (newId) {
       this.zoomedContact = newId;
   },
   setStarredContacts: function (newData){
     this.starredContacts = newData;
+  },
+  setUnits: function (newData){
+    this.units = newData;
+  },
+  loadContacts: async function (){
+    units = [];
+    this.contacts.map(contact => {if(!units.includes(contact.unit)) units.push(contact.unit);});
+    this.setUnits(units);
   },
   loadStarredContacts: async function (){
     try {
@@ -67,6 +76,7 @@ export default function App() {
     const FirstLoad = async () => {
       setLoading(true);
       await contactInfo.loadStarredContacts();
+      await contactInfo.loadContacts();
       setLoading(false)
     }
     FirstLoad();

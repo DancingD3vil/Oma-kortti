@@ -1,19 +1,24 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {Picker} from '@react-native-picker/picker';
 import Contactlist from './components/Contactlist.js';
 
 export default function Contacts({contactInfo, navigation}) {
     const [search, onChangeText] = React.useState('');
+    const [unit, setUnit] = React.useState(null);
     return (
       <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Text>{unit}</Text>
+          </View>
           <View style={styles.searchContainer}>
               <View style={styles.search}>
                   <TextInput value={search} onChangeText={onChangeText} placeholder='search'></TextInput>
               </View>
           </View>
           <View style={styles.mainContainer}>
-              <Contactlist contactInfo={contactInfo} search={search} navigation={navigation}/>
+              <Contactlist contactInfo={contactInfo} search={search} unit={unit} navigation={navigation}/>
           </View>
           <StatusBar style="auto" />
       </View>
@@ -31,6 +36,11 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logoContainer: {
+    height: 'auto',
+    width: '100%',
+    alignItems: 'center'
   },
   search: {
     backgroundColor: '#fff',

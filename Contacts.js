@@ -18,7 +18,7 @@ export default function Contacts({contactInfo, navigation}) {
               </View>
           </View>
           <View style={styles.mainContainer}>
-              <Contactlist contactInfo={contactInfo} search={search} unit={unit} navigation={navigation}/>
+              <Contactlist contactInfo={contactInfo} navigation={navigation} contactFilter={(contact) => (contact.firstName.toLowerCase().includes(search.toLowerCase()) || contact.lastName.toLowerCase().includes(search.toLowerCase()))&&(unit == null || contact.unit == unit)} />
           </View>
           <StatusBar style="auto" />
       </View>

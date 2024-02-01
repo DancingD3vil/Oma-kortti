@@ -34,11 +34,11 @@ const contactInfo = {
   contacts: contacts.contacts,
   zoomedContact: 0,
   units: [],
-  setZoomedContact: function (newId) {
-      this.zoomedContact = newId;
-  },
   setStarredContacts: function (newData){
     this.starredContacts = newData;
+  },
+  setZoomedContact: function (newId) {
+    this.zoomedContact = newId;
   },
   setUnits: function (newData){
     this.units = newData;

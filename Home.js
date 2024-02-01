@@ -1,12 +1,14 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View, } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View, } from 'react-native';
 import contacts from './contacts.json';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 
 
 
-export default function Home() {
+export default function Home({contactInfo}) {
   const contactArray = []
+  const starredContactList = contactInfo.starredContacts.starredContacts
+  alert(starredContactList.length)
   contactArray.push
   for (let i = 0; i < contacts.contacts.length; i++) {
     if (contacts.contacts[i].starred == false) {
@@ -18,13 +20,21 @@ export default function Home() {
           <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[i].firstName + ' ' + contacts.contacts[i].lastName} />
           <Text style={styles.text}>{contacts.contacts[i].firstName} {contacts.contacts[i].lastName}</Text>
           <Text style={styles.text}>{contacts.contacts[i].unit}</Text>
-          <MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" />
+          <Pressable onPress={()=> unStar(starredContactList[i])}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
         </View>
       )
     }
   }
   return <SafeAreaView style={styles.container}><ScrollView style={styles.scroll}>{contactArray}</ScrollView></SafeAreaView>
 }
+
+function unStar(id){
+  try{
+    starredContactList.find(id).pop
+  }
+  catch{console.error(error);}
+}
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-evenly',

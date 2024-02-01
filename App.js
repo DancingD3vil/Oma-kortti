@@ -13,7 +13,7 @@ import contacts from './contacts.json';
 
 function HomeScreen() {
   return (
-    <Home/>
+    <Home contactInfo={contactInfo}/>
   );
 }
 

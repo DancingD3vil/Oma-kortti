@@ -3,13 +3,13 @@ import contacts from './contacts.json';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 import { useState } from 'react';
+import contactFile from './components/Contact.js'
 
 
 
 export default function Home({contactInfo}) {
   const [contactArray, updateContactArray] = useState([])
   const [starredContactList, updateStarredContactList] = useState(contactInfo.starredContacts.starredContacts)
-  alert(starredContactList)
   if (starredContactList.length>0){
     for (let i = 0; i < starredContactList.length; i++) {
       //Find index via id
@@ -36,12 +36,11 @@ export default function Home({contactInfo}) {
   function unStar(id, cinfo){
     try{ 
       cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1)
-      alert(cinfo.starredContacts.starredContacts)
       cinfo.saveStarredContacts();
       cinfo.loadStarredContacts()
       updateContactArray([])
       updateStarredContactList(cinfo.starredContacts.starredContacts)
-      alert(cinfo.starredContacts.starredContacts)
+      
     }
     catch(error){console.error(error);}
   }

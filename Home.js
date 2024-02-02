@@ -14,9 +14,7 @@ export default function Home({contactInfo}) {
       //Find index via id
       var targetId = starredContactList[i]
       var targetIndex = targetId - 1
-      alert("We")
       //use index to push correct contact
-
       contactArray.push(
         <View style={styles.cardBox}>
           <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[targetIndex].firstName + ' ' + contacts.contacts[targetIndex].lastName} />

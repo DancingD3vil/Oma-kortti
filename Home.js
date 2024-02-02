@@ -2,37 +2,42 @@ import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View, } from 're
 import contacts from './contacts.json';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
+import { useState } from 'react';
 
 
 
 export default function Home({contactInfo}) {
   const contactArray = []
   const starredContactList = contactInfo.starredContacts.starredContacts
-  alert(starredContactList.length)
   contactArray.push
-  for (let i = 0; i < contacts.contacts.length; i++) {
-    if (contacts.contacts[i].starred == false) {
-      continue
-    }
-    else {
+  for (let i = 0; i < starredContactList.length; i++) {
+      //Find index via id
+      var targetId = starredContactList[i]
+      var targetIndex = targetId - 1
+      alert("We")
+      //use index to push correct contact
+
       contactArray.push(
         <View style={styles.cardBox}>
-          <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[i].firstName + ' ' + contacts.contacts[i].lastName} />
-          <Text style={styles.text}>{contacts.contacts[i].firstName} {contacts.contacts[i].lastName}</Text>
-          <Text style={styles.text}>{contacts.contacts[i].unit}</Text>
-          <Pressable onPress={()=> unStar(starredContactList[i])}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
+          <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[targetIndex].firstName + ' ' + contacts.contacts[targetIndex].lastName} />
+          <Text style={styles.text}>{contacts.contacts[targetIndex].firstName} {contacts.contacts[targetIndex].lastName}</Text>
+          <Text style={styles.text}>{contacts.contacts[targetIndex].unit}</Text>
+          <Pressable onPress={()=> unStar(starredContactList[targetId], contactInfo)}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
         </View>
       )
-    }
   }
   return <SafeAreaView style={styles.container}><ScrollView style={styles.scroll}>{contactArray}</ScrollView></SafeAreaView>
 }
 
-function unStar(id){
+function unStar(id, cinfo){
   try{
-    starredContactList.find(id).pop
+    //find contact index in array via id
+    //splice contact via index
+    cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1);
+    cinfo.saveStarredContacts();
+    window.location.reload();
   }
-  catch{console.error(error);}
+  catch(error){console.error(error);}
 }
 
 const styles = StyleSheet.create({

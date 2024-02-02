@@ -7,10 +7,11 @@ import { useState } from 'react';
 
 
 export default function Home({contactInfo}) {
-  const contactArray = []
-  const starredContactList = contactInfo.starredContacts.starredContacts
-  contactArray.push
-  for (let i = 0; i < starredContactList.length; i++) {
+  const [contactArray, updateContactArray] = useState([])
+  const [starredContactList, updateStarredContactList] = useState(contactInfo.starredContacts.starredContacts)
+  alert(starredContactList)
+  if (starredContactList.length>0){
+    for (let i = 0; i < starredContactList.length; i++) {
       //Find index via id
       var targetId = starredContactList[i]
       var targetIndex = targetId - 1
@@ -23,16 +24,38 @@ export default function Home({contactInfo}) {
           <Pressable onPress={()=> unStar(starredContactList[targetId], contactInfo)}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
         </View>
       )
+    }
+  }
+  else {
+    contactArray.push(
+      <View><Text>Looks like there's nothing here, wanna add something?</Text>
+      </View>
+    )
   }
   return <SafeAreaView style={styles.container}><ScrollView style={styles.scroll}>{contactArray}</ScrollView></SafeAreaView>
+  function unStar(id, cinfo){
+    try{ 
+      cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1)
+      alert(cinfo.starredContacts.starredContacts)
+      cinfo.saveStarredContacts();
+      cinfo.loadStarredContacts()
+      updateContactArray([])
+      updateStarredContactList(cinfo.starredContacts.starredContacts)
+      alert(cinfo.starredContacts.starredContacts)
+    }
+    catch(error){console.error(error);}
+  }
 }
 
 function unStar(id, cinfo){
   try{
     //find contact index in array via id
     //splice contact via index
-    cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1);
+
+    updateStarredContactList(cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1))
+    alert(cinfo.starredContacts.starredContacts)
     cinfo.saveStarredContacts();
+    alert(cinfo.starredContacts.starredContacts)
   }
   catch(error){console.error(error);}
 }

@@ -33,7 +33,6 @@ function unStar(id, cinfo){
     //splice contact via index
     cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1);
     cinfo.saveStarredContacts();
-    window.location.reload();
   }
   catch(error){console.error(error);}
 }

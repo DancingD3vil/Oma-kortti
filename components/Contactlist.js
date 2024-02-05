@@ -3,7 +3,7 @@ import Contact from './Contact.js';
 import { useState } from 'react';
 
 export default function Contactlist( {contactInfo, navigation, contactlistStyle = defaultContactlistStyle, contactStyle = defaultContactStyle, contactFilter = null} ) {
-    const [updateList, update] = useState(0);
+    const [updateList, update] = useState([]);
     contactlist = contactInfo.contacts; 
     if (contactFilter != null)
       contactlist = contactlist.filter(contactFilter);

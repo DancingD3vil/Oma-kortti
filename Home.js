@@ -7,21 +7,20 @@ import contactFile from './components/Contact.js'
 
 
 
-export default function Home({contactInfo}) {
+export default function Home({ contactInfo }) {
   const [contactArray, updateContactArray] = useState([])
   const [starredContactList, updateStarredContactList] = useState(contactInfo.starredContacts.starredContacts)
-  if (starredContactList.length>0){
-    for (let i = 0; i < starredContactList.length; i++) {
-      //Find index via id
-      var targetId = starredContactList[i]
-      var targetIndex = targetId - 1
+  //Find index via id
+  var targetList = contactInfo.contacts.filter((id) => contactInfo.starredContacts.starredContacts.includes(id.id))
+  if (targetList.length > 0) {
+    for (let i = 0; i < targetList.length; i++) {
       //use index to push correct contact
       contactArray.push(
         <View style={styles.cardBox}>
-          <UserAvatar size={45} style={styles.avatar} src={contacts.contacts.avatar} name={contacts.contacts[targetIndex].firstName + ' ' + contacts.contacts[targetIndex].lastName} />
-          <Text style={styles.text}>{contacts.contacts[targetIndex].firstName} {contacts.contacts[targetIndex].lastName}</Text>
-          <Text style={styles.text}>{contacts.contacts[targetIndex].unit}</Text>
-          <Pressable onPress={()=> unStar(starredContactList[targetId], contactInfo)}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
+          <UserAvatar size={45} style={styles.avatar} src={targetList[i].avatar} name={targetList[i].firstName + ' ' + targetList[i].lastName} />
+          <Text style={styles.text}>{targetList[i].firstName} {targetList[i].lastName}</Text>
+          <Text style={styles.text}>{targetList[i].unit}</Text>
+          <Pressable onPress={() => unStar(targetList[i].id, contactInfo)}><MaterialCommunityIcons name="star-face" size={45} color="gold" outline="black" /></Pressable>
         </View>
       )
     }
@@ -33,39 +32,29 @@ export default function Home({contactInfo}) {
     )
   }
   return <SafeAreaView style={styles.container}><ScrollView style={styles.scroll}>{contactArray}</ScrollView></SafeAreaView>
-  function unStar(id, cinfo){
-    try{ 
-      cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1)
-      cinfo.saveStarredContacts();
+  function unStar(id, cinfo) {
+
+    try {
+
+    cinfo.starredContacts.starredContacts.splice(starredContactList.indexOf(id), 1)
+      
+      cinfo.saveStarredContacts()
       cinfo.loadStarredContacts()
       updateContactArray([])
       updateStarredContactList(cinfo.starredContacts.starredContacts)
-      
+
     }
-    catch(error){console.error(error);}
+    catch (error) { console.error(error); }
   }
-}
-
-function unStar(id, cinfo){
-  try{
-    //find contact index in array via id
-    //splice contact via index
-
-    updateStarredContactList(cinfo.starredContacts.starredContacts.splice(cinfo.starredContacts.starredContacts.indexOf(id), 1))
-    alert(cinfo.starredContacts.starredContacts)
-    cinfo.saveStarredContacts();
-    alert(cinfo.starredContacts.starredContacts)
-  }
-  catch(error){console.error(error);}
 }
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-evenly',
-    backgroundColor:"white",
+    backgroundColor: "white",
   },
   scroll: {},
-  cardBox:{
+  cardBox: {
     justifyContent: 'space-evenly',
     flex: 1,
     flexDirection: 'row',
@@ -78,6 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
   },
   avatar: {},
-  text: {fontSize: 20},
-  icon: {fontSize: 50, borderColor: "black", borderWidth:1}
+  text: { fontSize: 20 },
+  icon: { fontSize: 50, borderColor: "black", borderWidth: 1 }
 });

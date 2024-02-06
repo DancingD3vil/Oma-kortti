@@ -4,8 +4,8 @@ import UserAvatar from 'react-native-user-avatar';
 export default function Zoom({contactInfo}){
     contact = contactInfo.contacts.find((contact) => contact.id == contactInfo.zoomedContact);
     return <View style={styles.container}>
-                <UserAvatar size={styles.avatar.size} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} />
                 <Text style={styles.name}>{contact.firstName + ' ' + contact.lastName}</Text>
+                <UserAvatar size={styles.avatar.size} style={styles.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} />
                 <Text style={styles.unit}>{contact.unit}</Text>
                 <Text style={styles.phone}>{contact.phone}</Text>
                 <Text style={styles.email}>{contact.email}</Text>
@@ -27,19 +27,23 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
       },
     name: {
-        fontSize: 32,
+        fontSize: 48,
+        fontWeight: 'bold',
         alignSelf: 'center',
     },
     unit: {
         fontSize: 32,
-        alignSelf: 'center',
+        alignSelf: 'left',
+        paddingLeft: 20
     },
     phone: {
         fontSize: 32,
-        alignSelf: 'center',
+        alignSelf: 'left',
+        paddingLeft: 20
     },
     email: {
         fontSize: 32,
-        alignSelf: 'center',
+        alignSelf: 'left',
+        paddingLeft: 20
     }
   });

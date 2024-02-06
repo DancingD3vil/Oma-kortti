@@ -28,7 +28,8 @@
     "react-native-user-avatar": "^1.0.8",
     "react-native-web": "~0.19.6",
     "react-router-dom": "^6.21.1",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "react-native-pager-view": "6.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

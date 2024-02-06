@@ -100,6 +100,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  luotsi: {
+    backgroundColor: '#18752b',
+  },
+  taitamo: {
+    backgroundColor: '#02607b',
+  },
+  topakka: {
+    backgroundColor: '#bd2805',
+  },
+  ohjaamo: {
+    backgroundColor: '#02295a',
+  },
   scrollview: {
     width: '100%',
     height: '100%'

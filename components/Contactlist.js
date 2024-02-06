@@ -44,7 +44,8 @@ function addIntoList(contact, contactInfo, navigation, contactStyle, update){
       alignSelf: 'center'
     },
     star: {
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
+      size: 50
     },
     avatar: {
       size: 64,
@@ -53,7 +54,8 @@ function addIntoList(contact, contactInfo, navigation, contactStyle, update){
     info: {
       flexDirection: 'column',
       paddingLeft: 10,
-      opacity: 45
+      opacity: 45,
+      width: "60%"
     },
     separator: {
       height: 10,

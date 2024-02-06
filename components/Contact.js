@@ -23,9 +23,9 @@ export default function Contact( {contact, contactInfo, navigation, contactStyle
     listUpdateFunction([]);
   }
   if(isStarred)
-      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" size={36} color="#f5e030" />;
+      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" size={contactStyle.star.size} color="#f5e030" />;
   else
-      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-outline" size={36} color="#a6a6a6" />;
+      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-outline" size={contactStyle.star.size} color="#a6a6a6" />;
   return (
   <View>
     <View style={contactStyle.container}>

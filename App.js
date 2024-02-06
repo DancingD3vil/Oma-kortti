@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { TabView, SceneMap } from 'react-native-tab-view';
 import Contacts from './Contacts.js';
 import Home from './Home.js';
 import Zoom from './Zoom.js';
@@ -70,6 +71,11 @@ const contactInfo = {
   }
 }
 
+const renderScene = SceneMap({
+  home: HomeScreen,
+  contacts: ContactsScreen,
+});
+
 export default function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -95,9 +101,23 @@ export default function App() {
 }
 
 function AScreen({navigation}) {
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'home', title: 'Home' },
+    { key: 'contacts', title: 'Contacts' },
+  ]);
+
+  return (
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: '100%' }}
+    />
+  );
   return <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen}  options={{unmountOnBlur: true}} />
-          <Tab.Screen name="Contacts" component={ContactsScreen} navigation={navigation}/>
+          <Tab.Screen name="Contacts" component={ContactsScreen} options={{unmountOnBlur: true}} navigation={navigation}/>
         </Tab.Navigator>
 }
 

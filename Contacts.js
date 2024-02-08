@@ -4,30 +4,37 @@ import { StyleSheet, Text, View, TextInput, Pressable, Image, ScrollView } from 
 import {Picker} from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
 import Contactlist from './components/Contactlist.js';
-
+import logos from './logos.json'
 
 
 export default function Contacts({contactInfo, navigation}) {
     const [search, onChangeText] = React.useState('');
     const [unit, setUnit] = React.useState(null);
-    const logos = {'Luotsi': require('./luotsi.png'),
-                  'Taitamo': require('./taitamo.png'),
-                  'Ohjaamo': require('./ohjaamo.png'),
-                  'default': require('./dunno.png')}
+    const unitStyles = {'Luotsi': styles.luotsi,
+                        'Taitamo': styles.taitamo,
+                        'Ohjaamo': styles.ohjaamo,
+                        'Topakka': styles.topakka,
+                        'default': styles.container};
     if(unit == null) {
       return (
       <View style={styles.container}>
             {contactInfo.units.map(unit => printUnit(unit))}
       </View>) 
     }
-    if(logos[unit] != undefined)
-        logo = logos[unit];
-      else
-        logo = logos.default;
+    if(logos.logos[unit] != undefined)
+        logo = logos.logos[unit];
+    else
+        logo = logos.logos.default;
+    if(unitStyles[unit] != undefined)
+      background = unitStyles[unit].backgroundColor;
+    else
+      background = unitStyles.default.backgroundColor;
     return (
-      <View style={styles.container}>
+      <View backgroundColor={background} style={styles.container}>
           <View style={styles.logoContainer}>         
-              <Image style={styles.logo} source={logo}/> 
+              <Image style={styles.logo} source={{
+                uri: logo,
+              }}/> 
           </View>
           <View style={styles.searchContainer}>
               <View style={styles.search}>
@@ -44,14 +51,14 @@ export default function Contacts({contactInfo, navigation}) {
       </View>
     );
     function printUnit(unit){
-      if(logos[unit] != undefined)
-        logo = logos[unit];
+      if(logos.logos[unit] != undefined)
+        logo = logos.logos[unit];
       else
-        logo = logos.default;
+        logo = logos.logos.default;
       return (
           <View style={styles.logoContainer}>
                   <Pressable style={styles.logo} onPress={() => setUnit(unit)}>
-                    <Image style={styles.logo} source={logo}/>
+                    <Image style={styles.logo} source={{uri: logo}}/>
                   </Pressable>
           </View> )
     }

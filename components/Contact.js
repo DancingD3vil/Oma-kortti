@@ -20,7 +20,7 @@ export default function Contact( {contact, contactInfo, navigation, contactStyle
       contactInfo.setStarredContacts(starredContacts);
       contactInfo.saveStarredContacts();
     }
-    listUpdateFunction([]);
+    //listUpdateFunction([]);
   }
   if(isStarred)
       starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" size={contactStyle.star.size} color="#f5e030" />;

@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 export default function Contactlist( {contactInfo, navigation, contactlistStyle = defaultContactlistStyle, contactStyle = defaultContactStyle, contactFilter = null} ) {
     const [updateList, update] = useState([]);
-    contactlist = contactInfo.contacts; 
     if (contactFilter != null)
-      contactlist = contactlist.filter(contactFilter);
+      contactlist = contactInfo.contacts.filter(contactFilter);
+    else
+      contactlist = contactInfo.contacts; 
     return <View style={contactlistStyle.container}>
               <ScrollView style={contactlistStyle.scrollview}>
                 {contactlist.map(contact => addIntoList(contact, contactInfo, navigation, contactStyle, update))}

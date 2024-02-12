@@ -14,8 +14,8 @@ export default function Contactlist( {contactInfo, navigation, contactlistStyle 
           </View>
   }
 
-function addIntoList(contact, contactInfo, navigation, contactStyle, update){
-      return <Contact key={contact.id} contact={contact} contactInfo={contactInfo} navigation={navigation} contactStyle={contactStyle} listUpdateFunction={update}/>
+function addIntoList(contact, contactInfo, navigation, contactStyle){
+      return <Contact key={contact.id} contact={contact} contactInfo={contactInfo} navigation={navigation} contactStyle={contactStyle}/>
   }
 
   const defaultContactlistStyle = StyleSheet.create({

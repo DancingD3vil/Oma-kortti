@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 
 
-export default function Contact( {contact, contactInfo, navigation, contactStyle, listUpdateFunction} ) {
+export default function Contact( {contact, contactInfo, navigation, contactStyle} ) {
   const [isStarred, setIsStarred] = useState(contactInfo.starredContacts.starredContacts.includes(contact['id']));
   function save(contact, contactInfo){
     starredContacts = contactInfo.starredContacts;
@@ -20,7 +20,6 @@ export default function Contact( {contact, contactInfo, navigation, contactStyle
       contactInfo.setStarredContacts(starredContacts);
       contactInfo.saveStarredContacts();
     }
-    //listUpdateFunction([]);
   }
   if(isStarred)
       starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" size={contactStyle.star.size} color="#f5e030" />;

@@ -3,14 +3,13 @@ import Contact from './Contact.js';
 import { useState } from 'react';
 
 export default function Contactlist( {contactInfo, navigation, contactlistStyle = defaultContactlistStyle, contactStyle = defaultContactStyle, contactFilter = null} ) {
-    const [updateList, update] = useState([]);
     if (contactFilter != null)
       contactlist = contactInfo.contacts.filter(contactFilter);
     else
       contactlist = contactInfo.contacts; 
     return <View style={contactlistStyle.container}>
               <ScrollView style={contactlistStyle.scrollview}>
-                {contactlist.map(contact => addIntoList(contact, contactInfo, navigation, contactStyle, update))}
+                {contactlist.map(contact => addIntoList(contact, contactInfo, navigation, contactStyle))}
               </ScrollView>
           </View>
   }

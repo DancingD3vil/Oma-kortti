@@ -4,12 +4,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TabView } from 'react-native-tab-view';
 import Contacts from './Contacts.js';
 import Home from './Home.js';
 import Zoom from './Zoom.js';
 import contacts from './contacts.json';
-import { json } from 'react-router-dom';
 
 
 
@@ -37,11 +35,13 @@ function ZoomScreen() {
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
+
+//Object for handling everything to do with contacts
 const contactInfo = {
-  starredContacts: {"starredContacts": []},
-  contacts: contacts.contacts,
-  zoomedContact: 0,
-  units: [],
+  starredContacts: {"starredContacts": []}, //an object with an array of unique identifiers to store starred contacts
+  contacts: contacts.contacts, //an array of contacts
+  zoomedContact: 0, //id to use in zoomed view
+  units: [], //an array of units
   setStarredContacts: function (newData){
     this.starredContacts = newData;
   },
@@ -51,11 +51,13 @@ const contactInfo = {
   setUnits: function (newData){
     this.units = newData;
   },
+  //function for loading contacts, currently just stores unique units into an array
   loadContacts: async function (){
     units = [];
     this.contacts.map(contact => {if(!units.includes(contact.unit)) units.push(contact.unit);});
     this.setUnits(units);
   },
+  //function for loading starred contacts from asynchronous storage
   loadStarredContacts: async function (){
     try {
       const conts = await AsyncStorage.getItem('starredContacts');
@@ -69,6 +71,7 @@ const contactInfo = {
       alert(error);
     }
   },
+  //function for saving current starred contacts object into asynchronous storage
   saveStarredContacts: async function (){
     try {
       await AsyncStorage.setItem('starredContacts', JSON.stringify(this.starredContacts));
@@ -81,6 +84,7 @@ const contactInfo = {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  //load data when starting app
   useEffect(() => {
     const FirstLoad = async () => {
       setLoading(true);
@@ -103,30 +107,7 @@ export default function App() {
   return <View style={[styles.container, styles.horizontal]}><ActivityIndicator size={100}/></View>;
 }
 
-function AScreen(navigation) {
-  /*const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'home', title: 'Home' },
-    { key: 'contacts', title: 'Contacts' },
-  ]);
-
-  return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={({ route }) => { 
-        switch (route.key) {
-        case 'home':
-            return <HomeScreen/>;
-        case 'contacts':
-            return <ContactsScreen navigation={navigation}/>;
-        default:
-            return null;
-        }
-    }}
-      onIndexChange={setIndex}
-      initialLayout={{ width: '100%' }}
-    />
-  );*/
+function AScreen() {
   return <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen}  options={{unmountOnBlur: true}} />
           <Tab.Screen name="Contacts" component={ContactsScreen} options={{unmountOnBlur: true}}/>

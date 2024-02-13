@@ -45,11 +45,14 @@ function addIntoList(contact, contactInfo, navigation, contactStyle){
     },
     star: {
       alignSelf: 'flex-end',
-      size: 50
+      fontSize: 50
+    },
+    avatarcontainer: {
+      alignSelf: 'center',
+      paddingLeft: 5
     },
     avatar: {
       size: 64,
-      alignSelf: 'center',
     },
     info: {
       flexDirection: 'column',

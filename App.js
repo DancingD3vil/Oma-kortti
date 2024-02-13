@@ -1,5 +1,5 @@
-import { useEffect, useState,  } from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { useEffect, useState } from 'react';
+import { View, StyleSheet, ActivityIndicator, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -96,12 +96,14 @@ export default function App() {
   }, []);
   if(!loading) {
     return (
-      <NavigationContainer>
-        <Stack.Navigator  initialRouteName="Screen">
-          <Stack.Screen options={{headerShown: false}} name="Screen" component={AScreen} />
-          <Stack.Screen name="Zoom" component={ZoomScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator  initialRouteName="Screen">
+            <Stack.Screen options={{headerShown: false}} name="Screen" component={AScreen} />
+            <Stack.Screen name="Zoom" component={ZoomScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
     );
   }
   return <View style={[styles.container, styles.horizontal]}><ActivityIndicator size={100}/></View>;

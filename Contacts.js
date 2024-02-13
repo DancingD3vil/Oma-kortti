@@ -1,7 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Pressable, Image, ScrollView } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { StyleSheet, Text, View, TextInput, Pressable, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Contactlist from './components/Contactlist.js';
 import logos from './logos.json'
@@ -30,7 +29,7 @@ export default function Contacts({contactInfo, navigation}) {
     else
       background = unitStyles.default.backgroundColor;
     return (
-      <View backgroundColor={background} style={styles.container}>
+      <SafeAreaView backgroundColor={background} style={styles.container}>
           <View style={styles.logoContainer}>         
               <Image style={styles.logo} source={{
                 uri: logo,
@@ -48,7 +47,7 @@ export default function Contacts({contactInfo, navigation}) {
               <Ionicons name="arrow-back-circle-outline" size={styles.backButton.size} color="black" />
           </Pressable>
           <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     );
     function printUnit(unit){
       if(logos.logos[unit] != undefined)

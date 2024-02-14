@@ -41,9 +41,13 @@ const contactInfo = {
   starredContacts: {"starredContacts": []}, //an object with an array of unique identifiers to store starred contacts
   contacts: contacts.contacts, //an array of contacts
   zoomedContact: 0, //id to use in zoomed view
+  chosenUnit: null,
   units: [], //an array of units
   setStarredContacts: function (newData){
     this.starredContacts = newData;
+  },
+  setChosenUnit: function (newUnit){
+    this.chosenUnit = newUnit;
   },
   setZoomedContact: function (newId) {
     this.zoomedContact = newId;

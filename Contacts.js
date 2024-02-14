@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Pressable, Image, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,13 +7,13 @@ import logos from './logos.json'
 
 
 export default function Contacts({contactInfo, navigation}) {
-    const [search, onChangeText] = React.useState('');
-    const [unit, setUnit] = React.useState(null);
+    const [search, onChangeText] = useState('');
+    const [unit, setUnit] = useState(contactInfo.chosenUnit);
+    const [searching, setSearching] = useState(false);
     const unitStyles = {'Luotsi': styles.luotsi,
                         'Taitamo': styles.taitamo,
                         'Ohjaamo': styles.ohjaamo,
-                        'Topakka': styles.topakka,
-                        'default': styles.container};
+                        'Topakka': styles.topakka};
     if(unit == null) {
       return (
       <View style={styles.container}>
@@ -25,25 +25,27 @@ export default function Contacts({contactInfo, navigation}) {
     else
         logo = logos.logos.default;
     if(unitStyles[unit] != undefined)
-      background = unitStyles[unit].backgroundColor;
+      unitstyle = unitStyles[unit];
+    if(searching)
+      logostyle = styles.hidden;
     else
-      background = unitStyles.default.backgroundColor;
+      logostyle = styles.logoContainer;
     return (
-      <SafeAreaView backgroundColor={background} style={styles.container}>
-          <View style={styles.logoContainer}>         
+      <SafeAreaView style={[styles.container, unitstyle]}>
+          <View style={logostyle}>         
               <Image style={styles.logo} source={{
                 uri: logo,
               }}/> 
           </View>
           <View style={styles.searchContainer}>
               <View style={styles.search}>
-                  <TextInput value={search} onChangeText={onChangeText} placeholder='search'></TextInput>
+                  <TextInput value={search} onFocus={() => setSearching(true)} onBlur={() => setSearching(false)} autoComplete="name" autoCorrect={false} onChangeText={onChangeText} placeholder='search'></TextInput>
               </View>
           </View>
           <View style={styles.mainContainer}>
               <Contactlist contactInfo={contactInfo} navigation={navigation} contactFilter={(contact) => (contact.firstName.toLowerCase().includes(search.toLowerCase()) || contact.lastName.toLowerCase().includes(search.toLowerCase()))&&(unit == null || contact.unit == unit)} />
           </View>
-          <Pressable style={styles.backButton} onPress={() => setUnit(null)}>
+          <Pressable style={styles.backButton} onPress={() =>{ contactInfo.setChosenUnit(null);setUnit(null); if(searching) setSearching(false);}}>
               <Ionicons name="arrow-back-circle-outline" size={styles.backButton.size} color="black" />
           </Pressable>
           <StatusBar style="auto" />
@@ -56,7 +58,10 @@ export default function Contacts({contactInfo, navigation}) {
         logo = logos.logos.default;
       return (
           <View style={styles.logoContainer}>
-                  <Pressable style={styles.logo} onPress={() => setUnit(unit)}>
+                  <Pressable style={({ pressed }) => [
+                    styles.logo,
+                    pressed ? { opacity: 0.5 } : {},
+                  ]} onPress={() => {contactInfo.setChosenUnit(unit);setUnit(unit);}}>
                     <Image style={styles.logo} source={{uri: logo}}/>
                   </Pressable>
           </View> )
@@ -77,6 +82,11 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     height: '20%',
+    width: '90%',
+    alignItems: 'center'
+  },
+  hidden: {
+    height: 0,
     width: '90%',
     alignItems: 'center'
   },

@@ -1,8 +1,10 @@
 import { View, ScrollView, StyleSheet } from 'react-native';
 import Contact from './Contact.js';
-import { useState } from 'react';
 
+//a component for showing a list of contacts
+//optional variables for list and contact styles as well as a filter
 export default function Contactlist( {contactInfo, navigation, contactlistStyle = defaultContactlistStyle, contactStyle = defaultContactStyle, contactFilter = null} ) {
+    //apply filter if available
     if (contactFilter != null)
       contactlist = contactInfo.contacts.filter(contactFilter);
     else
@@ -18,6 +20,8 @@ function addIntoList(contact, contactInfo, navigation, contactStyle){
       return <Contact key={contact.id} contact={contact} contactInfo={contactInfo} navigation={navigation} contactStyle={contactStyle}/>
   }
 
+
+  //default styles, used if no style variables are passed to component
   const defaultContactlistStyle = StyleSheet.create({
     container: {
         width: '100%',

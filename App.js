@@ -12,17 +12,20 @@ import contacts from './contacts.json';
 
 
 function HomeScreen() {
+  //reload screen when changing tabs
   const isFocused = useIsFocused();
   if (isFocused)
     return (
       <Home contactInfo={contactInfo}/>
     );
+  //since useIsFocused reloads the screen both when focusing and unfocusing, load something less heavy when not focused, like a spinny thing 
   return <View style={[styles.container, styles.horizontal]}><ActivityIndicator size={100}/></View>;
 }
 
 function ContactsScreen({navigation}) {
   const isFocused = useIsFocused();
   if (isFocused)
+  //navigation object is needed to navigate to zoom screen
     return (
       <Contacts contactInfo={contactInfo} navigation={navigation}/>
     );
@@ -36,12 +39,12 @@ function ZoomScreen() {
 const Tab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 
-//Object for handling everything to do with contacts
+//Object for handling everything to do with contacts and information related to them
 const contactInfo = {
   starredContacts: {"starredContacts": []}, //an object with an array of unique identifiers to store starred contacts
   contacts: contacts.contacts, //an array of contacts
   zoomedContact: 0, //id to use in zoomed view
-  chosenUnit: null,
+  chosenUnit: null, //unit focused in contacts screen, so it doesn't always go back to unit selection, when returning from zoom view
   units: [], //an array of units
   setStarredContacts: function (newData){
     this.starredContacts = newData;

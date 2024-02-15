@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 
-
+//a component to print individual contact
 export default function Contact( {contact, contactInfo, navigation, contactStyle} ) {
   const [isStarred, setIsStarred] = useState(contactInfo.starredContacts.starredContacts.includes(contact['id']));
+  //a function that adds or deletes contact from starredcontacts 
   function save(contact, contactInfo){
     starredContacts = contactInfo.starredContacts;
     if(starredContacts.starredContacts.includes(contact.id)){
@@ -28,7 +29,11 @@ export default function Contact( {contact, contactInfo, navigation, contactStyle
   return (
   <View>
     <View style={contactStyle.container}>
-        <View style={contactStyle.avatarcontainer}><Pressable style={contactStyle.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={contactStyle.avatar.size} style={contactStyle.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable></View>
+        <View style={contactStyle.avatarcontainer}>
+          <Pressable style={contactStyle.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}>
+            <UserAvatar size={contactStyle.avatar.size} style={contactStyle.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} />
+          </Pressable>
+        </View>
         <View style={contactStyle.info}>
           <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
           <Text>{contact['unit']}</Text>

@@ -14,18 +14,23 @@ export default function Contacts({contactInfo, navigation}) {
                         'Taitamo': styles.taitamo,
                         'Ohjaamo': styles.ohjaamo,
                         'Topakka': styles.topakka};
+    //if no unit selected, show unit selection view
     if(unit == null) {
       return (
       <View style={styles.container}>
             {contactInfo.units.map(unit => printUnit(unit))}
       </View>) 
     }
+    //get uri of logo from logos.json
     if(logos.logos[unit] != undefined)
         logo = logos.logos[unit];
     else
         logo = logos.logos.default;
     if(unitStyles[unit] != undefined)
       unitstyle = unitStyles[unit];
+    else
+      unitstyle = {};
+    //hide logo when searching
     if(searching)
       logostyle = styles.hidden;
     else

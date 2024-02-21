@@ -33,17 +33,17 @@ const styles = StyleSheet.create({
     },
     unit: {
         fontSize: 32,
-        alignSelf: 'left',
+        alignSelf: 'flex-start',
         paddingLeft: 20
     },
     phone: {
         fontSize: 32,
-        alignSelf: 'left',
+        alignSelf: 'flex-start',
         paddingLeft: 20
     },
     email: {
         fontSize: 32,
-        alignSelf: 'left',
+        alignSelf: 'flex-start',
         paddingLeft: 20
     }
   });

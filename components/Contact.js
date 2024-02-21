@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import UserAvatar from 'react-native-user-avatar';
 
-
-export default function Contact( {contact, contactInfo, navigation, contactStyle, listUpdateFunction} ) {
+//a component to print individual contact
+export default function Contact( {contact, contactInfo, navigation, contactStyle} ) {
   const [isStarred, setIsStarred] = useState(contactInfo.starredContacts.starredContacts.includes(contact['id']));
+  //a function that adds or deletes contact from starredcontacts 
   function save(contact, contactInfo){
     starredContacts = contactInfo.starredContacts;
     if(starredContacts.starredContacts.includes(contact.id)){
@@ -20,16 +21,19 @@ export default function Contact( {contact, contactInfo, navigation, contactStyle
       contactInfo.setStarredContacts(starredContacts);
       contactInfo.saveStarredContacts();
     }
-    //listUpdateFunction([]);
   }
   if(isStarred)
-      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" size={contactStyle.star.size} color="#f5e030" />;
+      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-face" color="#f5e030" />;
   else
-      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-outline" size={contactStyle.star.size} color="#a6a6a6" />;
+      starred = <MaterialCommunityIcons style={contactStyle.star} name="star-outline" color="#a6a6a6" />;
   return (
   <View>
     <View style={contactStyle.container}>
-        <Pressable style={contactStyle.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}><UserAvatar size={contactStyle.avatar.size} style={contactStyle.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} /></Pressable>
+        <View style={contactStyle.avatarcontainer}>
+          <Pressable style={contactStyle.avatar} onPress={()=>{contactInfo.setZoomedContact(contact.id);navigation.navigate('Zoom');}}>
+            <UserAvatar size={contactStyle.avatar.size} style={contactStyle.avatar} src={contact.avatar} name={contact['firstName'] + ' ' + contact['lastName']} />
+          </Pressable>
+        </View>
         <View style={contactStyle.info}>
           <Text>{contact['firstName'] + ' ' + contact['lastName']}</Text>
           <Text>{contact['unit']}</Text>

@@ -1,24 +1,27 @@
 import { View, ScrollView, StyleSheet } from 'react-native';
 import Contact from './Contact.js';
-import { useState } from 'react';
 
+//a component for showing a list of contacts
+//optional variables for list and contact styles as well as a filter
 export default function Contactlist( {contactInfo, navigation, contactlistStyle = defaultContactlistStyle, contactStyle = defaultContactStyle, contactFilter = null} ) {
-    const [updateList, update] = useState([]);
+    //apply filter if available
     if (contactFilter != null)
       contactlist = contactInfo.contacts.filter(contactFilter);
     else
       contactlist = contactInfo.contacts; 
     return <View style={contactlistStyle.container}>
               <ScrollView style={contactlistStyle.scrollview}>
-                {contactlist.map(contact => addIntoList(contact, contactInfo, navigation, contactStyle, update))}
+                {contactlist.map(contact => addIntoList(contact, contactInfo, navigation, contactStyle))}
               </ScrollView>
           </View>
   }
 
-function addIntoList(contact, contactInfo, navigation, contactStyle, update){
-      return <Contact key={contact.id} contact={contact} contactInfo={contactInfo} navigation={navigation} contactStyle={contactStyle} listUpdateFunction={update}/>
+function addIntoList(contact, contactInfo, navigation, contactStyle){
+      return <Contact key={contact.id} contact={contact} contactInfo={contactInfo} navigation={navigation} contactStyle={contactStyle}/>
   }
 
+
+  //default styles, used if no style variables are passed to component
   const defaultContactlistStyle = StyleSheet.create({
     container: {
         width: '100%',
@@ -46,11 +49,14 @@ function addIntoList(contact, contactInfo, navigation, contactStyle, update){
     },
     star: {
       alignSelf: 'flex-end',
-      size: 50
+      fontSize: 50
+    },
+    avatarcontainer: {
+      alignSelf: 'center',
+      paddingLeft: 5
     },
     avatar: {
       size: 64,
-      alignSelf: 'center',
     },
     info: {
       flexDirection: 'column',
